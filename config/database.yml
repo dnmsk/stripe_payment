@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  host: localhost
+  pool: 100
+  timeout: 5000
+  port: 5434
+  username: postgres
+  password: stripe_payment
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  host: <%= ENV['PGHOST'] || 'localhost' %>
+  database: <%= ENV['PGDATABASE'] || 'stripe_payment_test' %>
+  username: <%= ENV['PGUSER'] || 'postgres' %>
+  port: <%= ENV['PGPORT'] || 5434 %>
+
+staging:
+  <<: *default
+
+production:
+  <<: *default

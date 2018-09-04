@@ -1,0 +1,8 @@
+version: '2'
+services:
+  db:
+    image: postgres:10.3
+    environment:
+      POSTGRES_PASSWORD: stripe_payment
+    ports:
+      - 5434:5432

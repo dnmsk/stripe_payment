@@ -1,0 +1,19 @@
+h1 Listing payments
+
+table
+  thead
+    tr
+      th id
+      th sum
+      th date
+
+  tbody
+    - @payments.each do |payment|
+      tr
+        td = payment.id
+        td = payment.amount
+        td = payment.created_at
+
+br
+
+= link_to 'New Payment', new_payment_path, { 'data-no-turbolink': true }

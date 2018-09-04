@@ -1,0 +1,2 @@
+class StripesController < ApplicationController
+end

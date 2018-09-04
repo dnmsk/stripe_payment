@@ -1,0 +1,13 @@
+=content_for :html_head
+  script src='//js.stripe.com/v3/'
+
+  javascript:
+    var stripe_publishable_key = "#{Rails.application.secrets[:stripe][:publishable_key]}";
+
+  meta name="stripe-refresh" content="<%= Time.zone.now.to_i %>" data-turbolinks-track="reload"
+
+h1 New payment
+
+== render 'form'
+
+= link_to 'Back', payments_path

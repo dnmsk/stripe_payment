@@ -1,0 +1,5 @@
+{
+  "name": "StripePayment",
+  "private": true,
+  "dependencies": {}
+}

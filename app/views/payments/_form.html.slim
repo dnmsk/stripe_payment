@@ -1,0 +1,20 @@
+= form_for @payment do |f|
+  - if @payment.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+      ul
+        - @payment.errors.full_messages.each do |message|
+          li = message
+
+  label amount
+  = text_field(:payment, :amount, {type: :number, min: 1, max: 10000})
+
+  .form-row
+    label for="card-element"
+      | Credit or debit card
+    #card-element
+      <!-- A Stripe Element will be inserted here. -->
+
+    #card-errors role="alert"
+
+  .actions = f.submit
