@@ -1,5 +1,6 @@
 #= require sugarjs
 #= require jquery
+#= require jquery_ujs 
 #= require turbolinks
 
 #= require_self

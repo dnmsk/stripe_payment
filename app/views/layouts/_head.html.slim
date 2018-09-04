@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Stripe payments
+
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = yield :html_head
+
+  body [
+    class="#{controller_name}-#{action_name}"
+    id="#{controller_name}_#{action_name}"
+  ]
+    main
+      - if notice.present?
+        p#notice = notice
+
+      .container
+        = yield

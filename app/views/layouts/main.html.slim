@@ -1,0 +1,6 @@
+= render 'layouts/head'
+  a.pull-right[
+    href=destroy_user_session_path
+    data-method='delete'
+  ] Logout
+  = yield

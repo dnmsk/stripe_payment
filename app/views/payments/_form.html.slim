@@ -1,4 +1,4 @@
-= form_for @payment do |f|
+= form_for @payment, html: { id: 'new_payment', class: 'b-payment-form' } do |f|
   - if @payment.errors.any?
     #error_explanation
       h2 = "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
@@ -7,7 +7,7 @@
           li = message
 
   label amount
-  = text_field(:payment, :amount, {type: :number, min: 1, max: 10000})
+  = text_field(:payment, :amount, {type: :number, min: 1, max: 10000, class: 'payment-amount'})
 
   .form-row
     label for="card-element"

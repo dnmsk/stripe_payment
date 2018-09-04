@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  layout 'main'
 
   # GET /payments
   def index
@@ -28,15 +29,16 @@ class PaymentsController < ApplicationController
             source: @payment.stripe_token,
             metadata: { payment_id: @payment.id }
         })
-        store_success charge
-        redirect_to @payment, notice: 'Payment was successfully created.'
+        store_success(charge)
+        @payment.update(status: 'success')
+        return redirect_to @payment, notice: 'Payment was successfully created.'
       rescue => ex
-        store_fail_charge ex
-        redirect_to :new, notice: ex.to_s, amount: @payment.amount
+        @payment.update(status: 'fail')
+        store_fail_charge(ex)
+        return redirect_to new_payment_path, notice: ex.to_s
       end
-    else
-      render :new
     end
+    render :new
   end
 
   # DELETE /payments/1
