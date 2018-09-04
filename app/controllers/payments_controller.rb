@@ -73,7 +73,8 @@ private
     Charge.create(
       user: current_user, 
       status: 'fail',
-      data: { exception: exception.to_s },
+      data: exception.to_s,
+      #data: { exception: exception.to_s },
       payment: @payment
     )
   end
@@ -81,7 +82,7 @@ private
   def store_success charge
     Charge.create(
       user: current_user, 
-      status: charge.status,
+      status: charge.status.to_s,
       data: charge.to_h,
       payment: @payment
     )
