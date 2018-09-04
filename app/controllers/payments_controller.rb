@@ -30,11 +30,11 @@ class PaymentsController < ApplicationController
             metadata: { payment_id: @payment.id }
         })
         store_success(charge)
-        @payment.update(status: 'success')
+        set_payment_status 'success'
         return redirect_to @payment, notice: 'Payment was successfully created.'
       rescue => ex
-        @payment.update(status: 'fail')
         store_fail_charge(ex)
+        set_payment_status 'fail'
         return redirect_to new_payment_path, notice: ex.to_s
       end
     end
@@ -63,6 +63,10 @@ private
       user: current_user,
       status: 'new'
     }
+  end
+
+  def set_payment_status status
+    @payment.update(status: status)
   end
 
   def store_fail_charge exception
